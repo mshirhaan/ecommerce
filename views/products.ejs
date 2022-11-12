@@ -1,0 +1,31 @@
+<%- include('includes/head.ejs') %>
+       <% if(products.length > 0) { %>
+    
+    
+      <% for(const product of products) { %>
+        <div class="card">
+           <div class="container">
+            <h4><b>Name: <%= product.name %></b></h4> 
+            <p>Price: <%= product.price %></p> 
+            <p>Category: <%= product.category %></p> 
+          </div>
+          <a class="btn"
+          style="text-decoration: none;"
+          href="/edit-product/<%= product.id %>"
+          >Edit</a
+        >
+        <form style="display: inline;" action="/cart" method="post">
+          <button class="btn" type="submit">Add to Cart</button>
+          <input type="hidden" name="productId" value="<%= product.id %>" />
+        </form>
+        <button class="btn" type="button" onclick="deleteProduct('<%= product.id %>', this)">Delete</button>
+        </div>
+      
+      <% } %>
+    
+
+    <% } else { %>
+    <h2>No Products</h2>
+    <% } %>
+  </body>
+</html>

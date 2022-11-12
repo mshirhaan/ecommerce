@@ -1,0 +1,29 @@
+<%- include('includes/head.ejs') %>
+
+<form class="auth" action="/login" method="post" novalidate>
+  <% if(errorMessage) { %>
+    <div class="error"><%= errorMessage %></div>
+    <% } %>
+  <div class="container">
+    <label for="email"><b>Email</b></label>
+    <input
+      type="email"
+      placeholder="Enter Email"
+      name="email"
+      value="s@w"
+      required
+    />
+
+    <label for="psw"><b>Password</b></label>
+    <input
+      type="password"
+      placeholder="Enter Password"
+      name="password"
+      value="1"
+      required
+    />
+
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <button type="submit">Login</button>
+  </div>
+</form>

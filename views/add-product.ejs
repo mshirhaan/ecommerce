@@ -1,0 +1,22 @@
+<%- include('includes/head.ejs') %>
+<% if(isAddProduct) {  %>
+  <div class="card">
+<form style="margin: 20px;" action="/add-product" method="POST">
+  <input type="text" placeholder="Name" name="name">
+  <input type="number" placeholder="Price" name="price">
+  <input type="text" placeholder="Category" name="category">
+  <button class="btn" type="submit">Add Product</button>
+</form>
+<% } else { %>
+
+  <form style="margin: 20px;" action="/edit-product/<%= product.id %>" method="POST">
+    <input type="text" placeholder="Name" name="name" value="<%= product.name %>">
+    <input type="number" placeholder="Price" name="price" value="<%= product.price %>">
+    <input type="text" placeholder="Category" name="category" value="<%= product.category %>">
+    <button class="btn" type="submit">Save Product</button>
+  </form>
+
+  <% } %>
+  </div>
+  </body>
+</html>
