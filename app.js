@@ -38,12 +38,12 @@ app.use(csrfProtection);
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.session.isLoggedIn;
   res.locals.csrfToken = req.csrfToken();
-  if(req.session && req.session.user) {
-    res.locals.email = req.session.user.email
+  if (req.session && req.session.user) {
+    res.locals.email = req.session.user.email;
   } else {
-    res.locals.email = null
+    res.locals.email = null;
   }
-  
+
   next();
 });
 
@@ -53,10 +53,18 @@ app.use(userRoutes);
 app.use(productRoutes);
 app.use(authRoutes);
 
+app.get("/500", (req, res) => {
+  res.render("500", { path: "Error" });
+});
+
+app.use((error, req, res, next) => {
+  res.redirect("/500");
+});
+
 Product.belongsTo(User, { constraints: true, onDelete: "CASCADE" });
 
 sequelize
-  .sync()  
+  .sync()
   .then(() => {
     app.listen(3000);
   })

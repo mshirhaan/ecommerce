@@ -2,16 +2,30 @@
 
 <form class="auth" action="/signup" method="post" novalidate>
   <% if(errorMessage) { %>
-    <div class="error"><%= errorMessage %></div>
-    <% } %>
-  
-    <div class="container">
-      <label for="email"><b>Email</b></label>
-      <input type="email" placeholder="Enter Email" name="email" required>
-  
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" required>
-      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-      <button type="submit">Create Account</button>
-    </div>
-  </form>
+  <div class="error"><%= errorMessage %></div>
+  <% } %>
+
+  <div class="container">
+    <label for="email"><b>Email</b></label>
+    <input
+      class="<%= validationErrors.find(e => e.param == 'email') ? 'invalid' : '' %>"
+      type="email"
+      placeholder="Enter Email"
+      name="email"
+      value="<%= oldInput.email %>"
+      required
+    />
+
+    <label for="psw"><b>Password</b></label>
+    <input
+      class="<%= validationErrors.find(e => e.param == 'password') ? 'invalid' : '' %>"
+      type="password"
+      placeholder="Enter Password"
+      name="password"
+      value="<%= oldInput.password %>"
+      required
+    />
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+    <button type="submit">Create Account</button>
+  </div>
+</form>

@@ -9,12 +9,19 @@ body {
   }
   
   .topnav a {
-    float: left;
     color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+  }
+
+  .topnav a.left {
+    float: left;
+  }
+  
+  .topnav a.right {
+    float: right;
   }
   
   .topnav a:hover {
@@ -107,12 +114,15 @@ body {
   }
   
   .error {
-    background-color: #f38a8a;
+    background-color: #ffc7c7;
     text-align: center;
     padding: 0.5rem;
     border: 1px solid red;
     border-radius: 3px;
     color: red;
-  
+  }
+
+  .invalid {
+    border: 1px solid red !important;
   }
   

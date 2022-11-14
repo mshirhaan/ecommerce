@@ -5,30 +5,30 @@
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-
     <div class="topnav">
-      <a class="<%= path == '/products' ? 'active' : '' %>" href="/products"
+      <a
+        class="<%= path == '/products' ? 'active' : '' %> left"
+        href="/products"
         >Products</a
       >
       <% if(isAuthenticated) { %>
-      <a class="<%= path == '/add-product' ? 'active' : '' %>"
-        
+      <a
+        class="<%= path == '/add-product' ? 'active' : '' %> left"
         href="/add-product"
         >Add Product</a
       >
+      <% } %> <% if(!isAuthenticated) { %>
+      <a class="<%= path == '/login' ? 'active' : '' %> right" href="/login"
+        >Login</a
+      >
+      <% } %> <% if(!isAuthenticated) { %>
+      <a class="<%= path == '/signup' ? 'active' : '' %> right" href="/signup"
+        >Sign Up</a
+      >
       <% } %>
+      <a class="right"><%= email %></a>
+      <% if(isAuthenticated) { %>
+      <a class="right" href="/logout">Logout</a>
+      <% } %>
+    </div>
 
-      <% if(!isAuthenticated) { %>
-        <a class="<%= path == '/login' ? 'active' : '' %>" href="/login">Login</a>
-        <% } %> 
-  
-        <% if(!isAuthenticated) { %>
-          <a class="<%= path == '/signup' ? 'active' : '' %>"  href="/signup">Sign Up</a>
-          <% } %> 
-        <% if(isAuthenticated) { %>
-        <a  href="/logout"
-          >Logout</a
-        >
-        <% } %> 
-        <p style="color: white;"><%= email %></p>
-      </div>
