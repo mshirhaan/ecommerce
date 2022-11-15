@@ -1,9 +1,9 @@
-const Product = require("../model/product");
+const Product = require('../model/product');
 
 exports.getProducts = (req, res) => {
   Product.findAll()
     .then((products) => {
-      res.render("products", {
+      res.render('products', {
         products: products,
         path: '/products',
         isAuthenticated: req.session.isLoggedIn,
@@ -15,7 +15,7 @@ exports.getProducts = (req, res) => {
 exports.getProduct = (req, res) => {
   Product.findByPk(req.params.id).then((product) => {
     console.log(product);
-    res.render("product", {
+    res.render('product', {
       product: product,
       isAuthenticated: req.session.isLoggedIn,
     });
@@ -23,7 +23,7 @@ exports.getProduct = (req, res) => {
 };
 
 exports.getAddProduct = (req, res) => {
-  res.render("add-product", {
+  res.render('add-product', {
     isAddProduct: true,
     isEditProduct: false,
     path: '/add-product',
@@ -38,17 +38,26 @@ exports.postAddProduct = (req, res) => {
     category: req.body.category,
     price: req.body.price,
   })
-    .then((result) => res.redirect("/products"))
+    .then((result) => res.redirect('/products'))
     .catch((err) => console.log(err));
+};
+
+exports.deleteProduct = (req, res) => {
+  console.log('dd');
+  Product.findByPk(req.params.id).then((product) => {
+    product.destroy().then((result) => {
+      res.json({ message: 'Deleted' });
+    });
+  });
 };
 
 exports.getEditProduct = (req, res) => {
   Product.findByPk(req.params.id).then((product) => {
-    res.render("add-product", {
+    res.render('add-product', {
       isAddProduct: false,
       isEditProduct: true,
       product: product,
-      path: '/edit-product'
+      path: '/edit-product',
     });
   });
 };
@@ -66,6 +75,6 @@ exports.postEditProduct = (req, res) => {
     })
     .then((result) => {
       console.log(result);
-      res.redirect("/products");
+      res.redirect('/products');
     });
 };

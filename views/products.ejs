@@ -18,7 +18,7 @@
           <button class="btn" type="submit">Add to Cart</button>
           <input type="hidden" name="productId" value="<%= product.id %>" />
         </form>
-        <button class="btn" type="button" onclick="deleteProduct('<%= product.id %>', this)">Delete</button>
+        <button class="btn" type="button" onclick="deleteProduct('<%= product.id %>','<%= csrfToken %>', this)">Delete</button>
         </div>
       
       <% } %>
@@ -27,5 +27,6 @@
     <% } else { %>
     <h2>No Products</h2>
     <% } %>
+    <script src="index.js"></script>
   </body>
 </html>
